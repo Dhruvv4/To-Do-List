@@ -1,15 +1,27 @@
 $(document).ready(function () {
-    $("li").click(function() {
+    $("ul").on("click","li",function() {
         $(this).toggleClass("selected");
     });
 
     // Click on X to delete todo
-    $("span").click(function(event) {
+    $("ul").on("click","span",function(event) {
         $(this).parent().fadeOut(500, function() {
+            // This is will the li, not the span.
+            // Because we have used parent().
             $(this).remove();
-        })
+        });
 
         // This is used to stop the html bubbling.
         event.stopPropagation();
+    });
+
+    $("input[type='text']").keypress(function(event) {
+        if (event.which === 13) {
+            // Grabbing new todo text from input
+            var todoText = $(this).val();
+            $(this).val("");
+            // Create a new li add it to ul
+            $("ul").append("<li><span>X</span> " + todoText +"</li>");
+        }
     });
 });
