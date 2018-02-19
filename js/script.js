@@ -25,6 +25,7 @@ $(document).ready(function () {
         }
     });
 
+    // This will toggle the input from '+' icon
     $(".fa-plus").click(function () { 
         $("input[type='text']").fadeToggle();
     });
